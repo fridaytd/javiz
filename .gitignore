@@ -8,3 +8,10 @@ wheels/
 
 # venv
 .venv
+
+# Environment variable
+.env
+
+# logs folder
+**/logs/*
+!**/logs/.gitkeep
