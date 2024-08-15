@@ -20,6 +20,9 @@ dev-dependencies = [
     "python-dotenv>=1.0.1",
 ]
 
+[tool.rye.scripts]
+dev = "python src/javiz/main.py"
+
 [tool.hatch.metadata]
 allow-direct-references = true
 
