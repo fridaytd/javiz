@@ -51,6 +51,8 @@ idna==3.7
     # via yarl
 lxml==5.3.0
     # via javiz
+mangum==0.17.0
+    # via javiz
 multidict==6.0.5
     # via aiohttp
     # via yarl
@@ -73,6 +75,7 @@ starlette==0.37.2
     # via fastapi
 typing-extensions==4.12.2
     # via fastapi
+    # via mangum
     # via pydantic
     # via pydantic-core
 uvicorn==0.30.6

@@ -8,13 +8,7 @@ def get_logger(
 ) -> logging.Logger:
     logger: logging.Logger = logging.getLogger(name=name)
     logger.setLevel(level=level)
-    handler: logging.Handler = logging.FileHandler(
-        filename=pathlib.Path(__file__)
-        .parent.parent.joinpath("logs")
-        .joinpath("bot.log"),
-        mode="a",
-        encoding="utf-8",
-    )
+    handler: logging.Handler = logging.StreamHandler()
     formatter: logging.Formatter = logging.Formatter(
         fmt="%(asctime)s - %(name)s - %(levelname)s :: %(message)s",
     )

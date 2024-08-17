@@ -5,3 +5,8 @@ try:
 
 except Exception:
     pass
+
+from mangum import Mangum
+from javiz.main import app
+
+handler = Mangum(app)

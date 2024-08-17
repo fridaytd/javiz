@@ -2,6 +2,9 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from javiz.router import discord_router
+from javiz.utils.logger import get_logger
+
+logger = get_logger("main")
 
 
 app: FastAPI = FastAPI()
@@ -27,6 +30,7 @@ app.include_router(discord_router)
 
 @app.get("/")
 def hello():
+    logger.info("Home page")
     return {
         "message": "Hello from Javiz",
     }
