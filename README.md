@@ -1,3 +1,4 @@
 # javiz
 
-Describe your project here.
+Discord bot
+Deploy in serverless
