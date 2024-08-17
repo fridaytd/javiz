@@ -1,3 +1,3 @@
-from javiz.utils.enums import InterationType
+from javiz.services.lottery.lottery_results import get_newest_lottery_results
 
-print(InterationType.APPLICATION_COMMAND)
+print(get_newest_lottery_results())
