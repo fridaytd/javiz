@@ -3,7 +3,6 @@ name = "javiz"
 version = "0.1.0"
 description = "Add your description here"
 dependencies = [
-    "discord-py>=2.4.0",
     "fastapi>=0.112.0",
     "uvicorn>=0.30.6",
     "pynacl>=1.5.0",
