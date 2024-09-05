@@ -25,7 +25,7 @@ def __send_follow_message(
     token: str,
     content: str,
 ) -> httpx.Response:
-    url = f"{DISCORD_WEBHOOK_URL}x/{application_id}/{token}"
+    url = f"{DISCORD_WEBHOOK_URL}/{application_id}/{token}"
 
     json = {
         "content": content,
