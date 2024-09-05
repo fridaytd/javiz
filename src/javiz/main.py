@@ -1,4 +1,3 @@
-import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from javiz.router import discord_router
@@ -37,4 +36,9 @@ def hello():
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", reload=True)
+    try:
+        import uvicorn
+
+        uvicorn.run("main:app", reload=True)
+    except Exception:
+        pass
