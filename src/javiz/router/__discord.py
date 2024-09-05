@@ -18,7 +18,7 @@ async def discord_webhook(
     interaction: Interaction,
     background_tasks: BackgroundTasks,
 ) -> InteractionResponse:
-    logger.info(interaction)
+    logger.info(interaction.model_dump_json())
 
     match interaction.type:
         case InterationType.PING:

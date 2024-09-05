@@ -16,6 +16,8 @@ def lottery_background_task(
         content=get_newest_lottery_results(),
     )
     logger.info(f"lottery background task webhooks status code: {response.status_code}")
+    if response.status_code != 200:
+        logger.info(response.json())
 
 
 def __send_follow_message(
@@ -23,7 +25,7 @@ def __send_follow_message(
     token: str,
     content: str,
 ) -> httpx.Response:
-    url = f"{DISCORD_WEBHOOK_URL}/{application_id}/{token}"
+    url = f"{DISCORD_WEBHOOK_URL}x/{application_id}/{token}"
 
     json = {
         "content": content,
