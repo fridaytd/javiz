@@ -21,13 +21,10 @@ certifi==2024.7.4
     # via httpx
 cffi==1.17.0
     # via pynacl
-click==8.1.7
-    # via uvicorn
 fastapi==0.112.0
     # via javiz
 h11==0.14.0
     # via httpcore
-    # via uvicorn
 httpcore==1.0.5
     # via httpx
 httpx==0.27.0
@@ -60,5 +57,3 @@ typing-extensions==4.12.2
     # via mangum
     # via pydantic
     # via pydantic-core
-uvicorn==0.30.6
-    # via javiz

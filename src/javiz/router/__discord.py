@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, BackgroundTasks
 from javiz.utils.deps import ValidateDep
 from javiz.utils.enums import InterationType, InteractionCallbackType
 from javiz.utils.models import Interaction, InteractionResponse, Message
@@ -16,6 +16,7 @@ router = APIRouter(
 async def discord_webhook(
     _: ValidateDep,
     interaction: Interaction,
+    background_tasks: BackgroundTasks,
 ) -> InteractionResponse:
     logger.info(interaction)
 
@@ -24,7 +25,10 @@ async def discord_webhook(
             return ping_handler()
 
         case InterationType.APPLICATION_COMMAND:
-            return command_handler(interaction)
+            return command_handler(
+                interaction=interaction,
+                background_tasks=background_tasks,
+            )
 
     return InteractionResponse(
         type=InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE,
