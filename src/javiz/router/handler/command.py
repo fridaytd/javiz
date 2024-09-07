@@ -5,13 +5,15 @@ from javiz.utils.models import (
     Message,
 )
 from javiz.utils.enums import InteractionCallbackType
-from fastapi import BackgroundTasks
-from .__background_tasks import lottery_background_task
+
+
+from javiz.services.lottery import get_newest_lottery_results
+from .__interaction_callback import interaction_callback
+from .__follow_message import follow_message
 
 
 def command_handler(
     interaction: Interaction,
-    background_tasks: BackgroundTasks,
 ) -> InteractionResponse:
     data = ApplicationCommandData.model_validate(interaction.data)
     match data.name:
@@ -19,8 +21,7 @@ def command_handler(
             return hello_command()
 
         case "lottery":
-            background_tasks.add_task(lottery_background_task, interaction)
-            return lottery_command()
+            return lottery_command(interaction=interaction)
 
     return InteractionResponse(
         type=InteractionCallbackType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -35,7 +36,19 @@ def hello_command() -> InteractionResponse:
     )
 
 
-def lottery_command() -> InteractionResponse:
+def lottery_command(
+    interaction: Interaction,
+) -> InteractionResponse:
+    interaction_callback(
+        interaction=interaction,
+        interaction_response=InteractionResponse(
+            type=InteractionCallbackType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
+        ),
+    )
+    follow_message(
+        interaction=interaction,
+        message=get_newest_lottery_results(),
+    )
     return InteractionResponse(
-        type=InteractionCallbackType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
+        type=InteractionCallbackType.PONG,
     )
